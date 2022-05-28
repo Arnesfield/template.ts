@@ -14,8 +14,9 @@ Install dependencies:
 
 ```sh
 npm install --save-dev \
+  @rollup/plugin-typescript \
   @typescript-eslint/eslint-plugin @typescript-eslint/parser \
-  eslint typescript
+  eslint rimraf rollup typescript
 ```
 
 If Node module type declarations are required, include:
@@ -26,14 +27,27 @@ npm install --save-dev @types/node
 
 ---
 
-Scripts for `package.json` (uses `rimraf`):
+Example for `package.json`:
 
 ```json
 {
-  "prebuild": "rimraf lib",
-  "build": "tsc",
-  "lint": "eslint . --ext .js,.ts",
-  "lint:fix": "npm run lint -- --fix",
-  "start": "npm run build -- -w"
+  // "sideEffects": false,
+  "exports": {
+    "import": "./lib/esm/index.js",
+    "require": "./lib/cjs/index.js",
+    "default": "./lib/esm/index.js"
+  },
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "browser": "lib/index.umd.js",
+  "types": "lib/types/index.d.ts",
+  "files": ["lib"],
+  "scripts": {
+    "prebuild": "rimraf lib",
+    "build": "tsc --build tsconfig.lib.json && rollup -c",
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "npm run lint -- --fix",
+    "start": "npm run build -- -w"
+  }
 }
 ```
