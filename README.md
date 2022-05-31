@@ -14,9 +14,8 @@ Install dependencies:
 
 ```sh
 npm install --save-dev \
-  @rollup/plugin-typescript \
   @typescript-eslint/eslint-plugin @typescript-eslint/parser \
-  eslint rimraf rollup typescript
+  eslint rimraf rollup rollup-plugin-dts rollup-plugin-esbuild typescript
 ```
 
 If Node module type declarations are required, include:
@@ -44,7 +43,7 @@ Example for `package.json`:
   "files": ["lib"],
   "scripts": {
     "prebuild": "rimraf lib",
-    "build": "tsc --build tsconfig.lib.json && rollup -c",
+    "build": "rollup -c",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "npm run lint -- --fix",
     "start": "npm run build -- -w"

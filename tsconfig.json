@@ -4,6 +4,7 @@
     "lib": ["ES2017"],
     "strict": true,
     "sourceMap": true,
+    "stripInternal": true,
     "noImplicitAny": true,
     "removeComments": false,
     "preserveConstEnums": true,
