@@ -14,6 +14,7 @@ Install dependencies:
 
 ```sh
 npm install --save-dev \
+  @rollup/plugin-typescript \
   @typescript-eslint/eslint-plugin @typescript-eslint/parser \
   eslint rimraf rollup rollup-plugin-dts rollup-plugin-esbuild typescript
 ```
