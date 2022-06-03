@@ -16,7 +16,8 @@ Install dependencies:
 npm install --save-dev \
   @rollup/plugin-typescript \
   @typescript-eslint/eslint-plugin @typescript-eslint/parser \
-  eslint rimraf rollup rollup-plugin-dts rollup-plugin-esbuild typescript
+  eslint rimraf rollup rollup-plugin-dts rollup-plugin-esbuild \
+  rollup-plugin-terser typescript
 ```
 
 If Node module type declarations are required, include:

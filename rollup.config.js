@@ -1,46 +1,44 @@
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
 import esbuild from 'rollup-plugin-esbuild';
+import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
+const name = pkg.name.slice(pkg.name.lastIndexOf('/') + 1);
 const input = 'src/index.ts';
 const inputUmd = 'src/index.umd.ts';
 const plugins = [typescript(), esbuild()];
 
-function output(...formats) {
-  return formats.map(format => {
-    return {
-      dir: `lib/${format}`,
-      format,
-      preserveModules: true,
-      preserveModulesRoot: 'src',
-      sourcemap: true,
-      exports: 'named'
-    };
-  });
+function umd(options) {
+  return {
+    file: pkg.browser,
+    format: 'umd',
+    name,
+    sourcemap: true,
+    exports: 'default',
+    ...options
+  };
 }
 
 export default [
-  { input, output: output('cjs', 'esm'), plugins },
   {
-    input: inputUmd,
-    output: {
-      file: pkg.browser,
-      format: 'umd',
-      name: pkg.name.slice(pkg.name.lastIndexOf('/') + 1),
-      sourcemap: true,
-      exports: 'default'
-    },
+    input,
+    output: [
+      { file: pkg.main, format: 'cjs', sourcemap: true, exports: 'named' },
+      { file: pkg.module, format: 'esm', sourcemap: true, exports: 'named' }
+    ],
     plugins
   },
   {
-    input,
-    output: {
-      dir: pkg.types.slice(0, pkg.types.lastIndexOf('/')),
-      format: 'esm',
-      preserveModules: true,
-      preserveModulesRoot: 'src'
-    },
-    plugins: [dts()]
-  }
+    input: inputUmd,
+    output: [
+      umd(),
+      umd({
+        file: pkg.browser.replace(/\.js$/, '.min.js'),
+        plugins: [terser()]
+      })
+    ],
+    plugins
+  },
+  { input, output: { file: pkg.types, format: 'esm' }, plugins: [dts()] }
 ];
