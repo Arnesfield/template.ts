@@ -7,7 +7,7 @@ import pkg from './package.json';
 const name = pkg.name.slice(pkg.name.lastIndexOf('/') + 1);
 const input = 'src/index.ts';
 const inputUmd = 'src/index.umd.ts';
-const plugins = [typescript(), esbuild()];
+const plugins = [esbuild()];
 
 function umd(options) {
   return {
@@ -20,7 +20,7 @@ function umd(options) {
   };
 }
 
-export default [
+export default args => [
   {
     input,
     output: [
@@ -40,5 +40,12 @@ export default [
     ],
     plugins
   },
-  { input, output: { file: pkg.types, format: 'esm' }, plugins: [dts()] }
+  { input, output: { file: pkg.types, format: 'esm' }, plugins: [dts()] },
+  // type checking only
+  {
+    input,
+    output: !args.watch ? { file: '/dev/null' } : undefined,
+    plugins: [typescript({ noEmit: true, sourceMap: false })],
+    watch: { skipWrite: true }
+  }
 ];

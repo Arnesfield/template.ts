@@ -34,21 +34,21 @@ Example for `package.json`:
 {
   // "sideEffects": false,
   "exports": {
-    "import": "./lib/esm/index.js",
-    "require": "./lib/cjs/index.js",
-    "default": "./lib/esm/index.js"
+    "import": "./lib/index.mjs",
+    "require": "./lib/index.cjs",
+    "default": "./lib/index.mjs"
   },
-  "main": "lib/cjs/index.js",
-  "module": "lib/esm/index.js",
+  "main": "lib/index.cjs",
+  "module": "lib/index.mjs",
   "browser": "lib/index.umd.js",
-  "types": "lib/types/index.d.ts",
+  "types": "lib/index.d.ts",
   "files": ["lib"],
   "scripts": {
     "prebuild": "rimraf lib",
     "build": "rollup -c",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "npm run lint -- --fix",
-    "start": "npm run build -- -w"
+    "start": "rollup -cw"
   }
 }
 ```
