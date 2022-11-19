@@ -24,7 +24,9 @@ npm install --save-dev \
 Install testing dependencies:
 
 ```sh
-npm install --save-dev @types/chai @types/mocha chai esbuild-runner mocha
+npm install --save-dev \
+  @types/chai @types/mocha @types/sinon \
+  chai esbuild-runner mocha sinon
 ```
 
 If Node module type declarations are required, include:
