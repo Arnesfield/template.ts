@@ -35,37 +35,8 @@ If Node module type declarations are required, include:
 npm install --save-dev @types/node
 ```
 
----
+Finally, sort `package.json` with [sort-package-json](https://www.npmjs.com/package/sort-package-json):
 
-Example for `package.json`:
-
-```json
-{
-  "sideEffects": false,
-  "type": "module",
-  "exports": {
-    "import": "./lib/index.mjs",
-    "require": "./lib/index.cjs",
-    "default": "./lib/index.mjs"
-  },
-  "main": "lib/index.cjs",
-  "jsdelivr": "lib/index.umd.min.js",
-  "unpkg": "lib/index.umd.min.js",
-  "module": "lib/index.mjs",
-  "types": "lib/index.d.ts",
-  "files": ["lib"],
-  "scripts": {
-    "prebuild": "rimraf lib",
-    "build": "node scripts/build",
-    "check": "concurrently -r --kill-others-on-fail npm:lint:strict \"tsc --noEmit\"",
-    "lint": "eslint . --ext .js,.ts",
-    "lint:fix": "npm run lint -- --fix",
-    "lint:strict": "npm run lint -- --max-warnings 0",
-    "start": "npm run build -- -w",
-    "start:prod": "npm run build -- -w -p",
-    "test": "concurrently -r --kill-others-on-fail npm:test:mocha npm:check",
-    "test:mocha": "mocha -r esbuild-runner/register **/*.spec.ts",
-    "test:watch": "npm run test:mocha -- --watch --watch-files src"
-  }
-}
+```sh
+sort-package-json
 ```
