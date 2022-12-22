@@ -16,15 +16,12 @@
   ],
   "scripts": {
     "prebuild": "rimraf lib",
-    "build": "node scripts/build",
-    "check": "concurrently -r --kill-others-on-fail npm:lint:strict \"tsc --noEmit\"",
+    "build": "rollup -c rollup.config.ts --configPlugin esbuild",
     "lint": "eslint . --ext .js,.ts",
-    "lint:fix": "npm run lint -- --fix",
     "lint:strict": "npm run lint -- --max-warnings 0",
-    "start": "npm run build -- -w",
-    "start:prod": "npm run build -- -w -p",
-    "test": "concurrently -r --kill-others-on-fail npm:test:mocha npm:check",
-    "test:mocha": "mocha -r esbuild-runner/register **/*.spec.ts",
-    "test:watch": "npm run test:mocha -- --watch --watch-files src"
+    "start": "npm run build -- -w --no-watch.clearScreen",
+    "test": "concurrently -r --kill-others-on-fail npm:test:mocha npm:lint:strict \"tsc --skipLibCheck\"",
+    "test:mocha": "mocha -r tsx **/*.spec.ts",
+    "test:watch": "npm run test:mocha -- --watch --watch-files src,test"
   }
 }

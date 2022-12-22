@@ -16,9 +16,8 @@ Install dependencies:
 npm install --save-dev \
   @rollup/plugin-eslint @rollup/plugin-typescript \
   @typescript-eslint/eslint-plugin @typescript-eslint/parser \
-  concurrently esbuild eslint rimraf rollup \
-  rollup-plugin-bundle-size rollup-plugin-dts rollup-plugin-esbuild \
-  typescript
+  eslint rimraf rollup rollup-plugin-dts rollup-plugin-esbuild \
+  rollup-plugin-output-size typescript
 ```
 
 Install testing dependencies:
@@ -26,7 +25,7 @@ Install testing dependencies:
 ```sh
 npm install --save-dev \
   @types/chai @types/mocha @types/sinon \
-  chai esbuild-runner mocha sinon
+  chai concurrently mocha sinon tsx
 ```
 
 If Node module type declarations are required, include:
