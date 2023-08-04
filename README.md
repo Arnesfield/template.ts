@@ -17,7 +17,7 @@ npm install --save-dev \
   @rollup/plugin-eslint @rollup/plugin-typescript \
   @typescript-eslint/eslint-plugin @typescript-eslint/parser \
   eslint rimraf rollup rollup-plugin-dts rollup-plugin-esbuild \
-  rollup-plugin-output-size typescript
+  rollup-plugin-output-size tslib typescript
 ```
 
 Install testing dependencies:
