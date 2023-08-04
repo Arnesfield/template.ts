@@ -34,7 +34,7 @@ export default defineConfig([
   {
     input,
     output: [
-      { file: pkg.name, format: 'cjs', exports: 'named', sourcemap: PROD },
+      { file: pkg.main, format: 'cjs', exports: 'named', sourcemap: PROD },
       { file: pkg.module, format: 'esm', exports: 'named', sourcemap: PROD }
     ],
     plugins: [esbuild(), outputSize()]
