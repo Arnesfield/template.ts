@@ -12,7 +12,7 @@ const typescript = _typescript as unknown as typeof _typescript.default;
 
 // skip sourcemap and umd unless production
 const PROD = process.env.NODE_ENV !== 'development';
-
+const WATCH = process.env.ROLLUP_WATCH === 'true';
 const name = pkg.name.slice(pkg.name.lastIndexOf('/') + 1);
 const input = 'src/index.ts';
 const inputUmd = 'src/index.umd.ts';
@@ -59,7 +59,7 @@ export default defineConfig([
     output: { file: pkg.types, format: 'esm' },
     plugins: [dts(), outputSize()]
   },
-  !PROD && {
+  WATCH && {
     input,
     watch: { skipWrite: true },
     plugins: [eslint(), typescript()]
