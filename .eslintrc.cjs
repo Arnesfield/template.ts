@@ -4,7 +4,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-  ignorePatterns: ['node_modules', '/lib', 'tmp', 'fixtures', '*.json'],
+  ignorePatterns: ['node_modules', '/lib', 'tmp', 'fixtures'],
   rules: {
     'no-constant-condition': 0,
     'no-unused-vars': 0,
@@ -14,6 +14,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-inferrable-types': 0,
     '@typescript-eslint/no-non-null-assertion': 1,
+    '@typescript-eslint/no-unused-expressions': 0,
     '@typescript-eslint/no-unused-vars': [1, { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-var-requires': 0
   }
