@@ -14,17 +14,19 @@ Install dependencies:
 
 ```sh
 npm install --save-dev \
+  @eslint/js \
   @rollup/plugin-eslint @rollup/plugin-typescript @types/node \
-  @typescript-eslint/eslint-plugin @typescript-eslint/parser \
-  concurrently eslint prettier rimraf rollup rollup-plugin-cleanup \
+  concurrently eslint globals prettier rimraf rollup rollup-plugin-cleanup \
   rollup-plugin-dts rollup-plugin-esbuild rollup-plugin-output-size \
-  tslib typescript
+  tslib typescript typescript-eslint
 ```
 
 Install testing dependencies:
 
 ```sh
-npm install --save-dev @types/chai @types/mocha @types/sinon chai mocha sinon tsx
+npm install --save-dev \
+  @types/chai @types/mocha @types/sinon \
+  chai eslint-plugin-chai-friendly mocha sinon tsx
 ```
 
 Finally, sort `package.json` with [sort-package-json](https://www.npmjs.com/package/sort-package-json):
