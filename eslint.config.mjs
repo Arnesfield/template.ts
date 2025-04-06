@@ -23,7 +23,6 @@ export default tseslint.config(
   {
     rules: {
       '@typescript-eslint/no-inferrable-types': 'warn',
-      '@typescript-eslint/no-non-null-assertion': 'warn',
       '@typescript-eslint/no-require-imports': 'warn',
       '@typescript-eslint/no-unused-expressions': [
         'warn',
@@ -33,7 +32,7 @@ export default tseslint.config(
         'warn',
         { argsIgnorePattern: '^_' }
       ],
-      curly: 'warn',
+      curly: ['warn', 'multi-line'],
       eqeqeq: ['warn', 'always', { null: 'ignore' }],
       'no-constant-condition': 'warn',
       'no-empty': 'warn',
