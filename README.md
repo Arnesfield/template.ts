@@ -16,9 +16,9 @@ Install dependencies:
 npm install --save-dev \
   @eslint/js \
   @rollup/plugin-eslint @rollup/plugin-typescript @types/node \
-  concurrently eslint globals prettier rimraf rollup rollup-plugin-cleanup \
-  rollup-plugin-dts rollup-plugin-esbuild rollup-plugin-output-size \
-  tslib typescript typescript-eslint
+  concurrently eslint eslint-plugin-jsdoc globals prettier rimraf rollup \
+  rollup-plugin-cleanup rollup-plugin-dts rollup-plugin-esbuild \
+  rollup-plugin-output-size tslib typescript typescript-eslint
 ```
 
 Install testing dependencies:
